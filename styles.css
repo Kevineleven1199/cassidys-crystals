@@ -4,12 +4,14 @@
   --muted: #6c5b61;
   --line: #eadde0;
   --surface: #fffafa;
-  --rose: #b84b67;
-  --teal: #177e89;
-  --gold: #c88a24;
+  --rose: #d63384;
+  --teal: #00a8a8;
+  --gold: #ffb703;
   --lavender: #7251a5;
   --mint: #dff4ee;
   --shell: #fff4ec;
+  --electric: #4cc9f0;
+  --violet: #7b2ff7;
 }
 
 * {
@@ -25,6 +27,7 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--surface);
+  overflow-x: hidden;
 }
 
 button,
@@ -32,6 +35,49 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255, 183, 3, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 20%, rgba(76, 201, 240, 0.22), transparent 30%),
+    linear-gradient(135deg, #fff8fb, #f3fffb 46%, #fff6df);
+}
+
+.aurora-bg span {
+  position: absolute;
+  width: 42vw;
+  height: 42vw;
+  min-width: 320px;
+  min-height: 320px;
+  border-radius: 999px;
+  filter: blur(48px);
+  opacity: 0.46;
+  animation: drift 15s ease-in-out infinite alternate;
+}
+
+.aurora-bg span:nth-child(1) {
+  left: -12vw;
+  top: 12vh;
+  background: #f72585;
+}
+
+.aurora-bg span:nth-child(2) {
+  right: -16vw;
+  top: 20vh;
+  background: #4cc9f0;
+  animation-delay: -4s;
+}
+
+.aurora-bg span:nth-child(3) {
+  left: 34vw;
+  bottom: -22vw;
+  background: #ffd166;
+  animation-delay: -8s;
 }
 
 .site-header {
@@ -44,7 +90,7 @@ textarea {
   gap: 20px;
   min-height: 72px;
   padding: 14px clamp(18px, 5vw, 72px);
-  background: rgba(255, 250, 250, 0.92);
+  background: rgba(255, 250, 250, 0.8);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px);
 }
@@ -70,8 +116,10 @@ textarea {
   height: 38px;
   place-items: center;
   color: white;
-  background: var(--rose);
+  background: conic-gradient(from 120deg, var(--rose), var(--electric), var(--gold), var(--rose));
   border-radius: 8px;
+  box-shadow: 0 0 24px rgba(214, 51, 132, 0.35);
+  animation: badgePulse 3.8s ease-in-out infinite;
 }
 
 .nav-links {
@@ -115,15 +163,55 @@ textarea {
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   gap: clamp(28px, 6vw, 76px);
   align-items: center;
   min-height: calc(100vh - 72px);
   padding: clamp(48px, 8vw, 92px) clamp(18px, 5vw, 72px);
+  overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 244, 236, 0.94), rgba(223, 244, 238, 0.9)),
-    radial-gradient(circle at 75% 30%, rgba(184, 75, 103, 0.18), transparent 34%);
+    linear-gradient(115deg, rgba(255, 255, 255, 0.72), rgba(243, 255, 251, 0.52)),
+    radial-gradient(circle at 75% 30%, rgba(214, 51, 132, 0.22), transparent 34%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(115deg, transparent 0 44%, rgba(255, 255, 255, 0.65) 48%, transparent 52% 100%),
+    linear-gradient(62deg, transparent 0 58%, rgba(76, 201, 240, 0.16) 60%, transparent 64% 100%);
+  background-size: 180px 100%, 260px 100%;
+  opacity: 0.75;
+  pointer-events: none;
+  animation: prismSweep 5.5s linear infinite;
+}
+
+.spark-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spark-field span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 14px;
+  height: 14px;
+  background: white;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
+  animation: twinkle 2.4s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+
+.hero-copy,
+.hero-panel {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
@@ -131,6 +219,12 @@ textarea {
   margin: 0;
   font-size: clamp(4rem, 10vw, 8.5rem);
   line-height: 0.9;
+  background: linear-gradient(105deg, #201719 8%, #d63384 36%, #00a8a8 58%, #201719 86%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleFlash 6s ease-in-out infinite;
 }
 
 .hero p,
@@ -150,6 +244,15 @@ textarea {
   text-transform: uppercase;
 }
 
+.shimmer-text {
+  background: linear-gradient(90deg, var(--teal), var(--rose), var(--gold), var(--teal));
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleFlash 4s ease-in-out infinite;
+}
+
 .hero-actions {
   flex-wrap: wrap;
   gap: 12px;
@@ -162,11 +265,21 @@ textarea {
   justify-content: center;
   padding: 0 18px;
   text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.button:hover,
+.product-info button:hover,
+.filter:hover {
+  transform: translateY(-2px);
 }
 
 .primary {
   color: white;
-  background: var(--rose);
+  background: linear-gradient(120deg, var(--rose), var(--violet), var(--teal));
+  background-size: 220% auto;
+  box-shadow: 0 16px 35px rgba(214, 51, 132, 0.24);
+  animation: buttonGlow 4s ease-in-out infinite;
 }
 
 .secondary {
@@ -175,16 +288,66 @@ textarea {
   border: 1px solid var(--line);
 }
 
+.mini-gems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.mini-gems span {
+  padding: 9px 12px;
+  color: #2c2730;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 12px 26px rgba(32, 23, 25, 0.08);
+}
+
 .hero-panel {
+  position: relative;
   display: grid;
   min-height: 480px;
   align-content: end;
   padding: 28px;
   overflow: hidden;
   color: white;
-  background: linear-gradient(145deg, #2f2430, #11656e);
+  background:
+    linear-gradient(145deg, rgba(47, 36, 48, 0.94), rgba(17, 101, 110, 0.92)),
+    radial-gradient(circle at 45% 34%, rgba(255, 255, 255, 0.24), transparent 28%);
   border-radius: 8px;
-  box-shadow: 0 28px 80px rgba(32, 23, 25, 0.22);
+  box-shadow: 0 34px 90px rgba(32, 23, 25, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  isolation: isolate;
+}
+
+.hero-panel::before,
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.22), transparent, rgba(255, 183, 3, 0.16), transparent);
+  animation: spinGlow 10s linear infinite;
+  z-index: -1;
+}
+
+.hero-panel::after {
+  animation-duration: 16s;
+  animation-direction: reverse;
+  opacity: 0.45;
+}
+
+.halo-ring {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 72%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  transform: translate(-50%, -50%) rotateX(68deg);
+  box-shadow: 0 0 38px rgba(76, 201, 240, 0.42);
+  animation: halo 5s ease-in-out infinite;
 }
 
 .hero-panel p {
@@ -205,6 +368,7 @@ textarea {
   display: block;
   clip-path: polygon(50% 0, 88% 24%, 74% 100%, 26% 100%, 12% 24%);
   filter: drop-shadow(0 24px 24px rgba(0, 0, 0, 0.32));
+  transform-origin: center bottom;
 }
 
 .gem-amethyst {
@@ -214,6 +378,7 @@ textarea {
   height: 210px;
   background: linear-gradient(145deg, #efe6ff, #7d4cc0 55%, #36224f);
   transform: rotate(-11deg);
+  animation: floatCrystal 4.6s ease-in-out infinite;
 }
 
 .gem-quartz {
@@ -223,6 +388,7 @@ textarea {
   height: 190px;
   background: linear-gradient(145deg, #ffffff, #a5e0e3 58%, #397b86);
   transform: rotate(16deg);
+  animation: floatCrystal 5.2s ease-in-out infinite reverse;
 }
 
 .gem-citrine {
@@ -232,6 +398,49 @@ textarea {
   height: 152px;
   background: linear-gradient(145deg, #fff3b0, #d79228 62%, #7a4a12);
   transform: rotate(8deg);
+  animation: floatCrystal 4.2s ease-in-out infinite;
+}
+
+.gem-emerald {
+  left: 48%;
+  bottom: 18px;
+  width: 82px;
+  height: 128px;
+  background: linear-gradient(145deg, #dcfff4, #22b07d 58%, #0a533c);
+  transform: rotate(-4deg);
+  animation: floatCrystal 4.9s ease-in-out infinite reverse;
+}
+
+.facet {
+  position: absolute;
+  display: block;
+  width: 82px;
+  height: 82px;
+  clip-path: polygon(50% 0, 100% 42%, 80% 100%, 20% 100%, 0 42%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(76, 201, 240, 0.12));
+  animation: facetSpin 8s linear infinite;
+}
+
+.facet-one {
+  left: 8%;
+  bottom: 34px;
+}
+
+.facet-two {
+  right: 8%;
+  top: 64px;
+  width: 58px;
+  height: 58px;
+  animation-delay: -2s;
+}
+
+.facet-three {
+  left: 54%;
+  top: 18px;
+  width: 48px;
+  height: 48px;
+  animation-delay: -4s;
 }
 
 .section {
@@ -249,7 +458,8 @@ textarea {
 
 .inventory-bar div {
   padding: 28px;
-  background: white;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px);
 }
 
 .inventory-bar strong {
@@ -293,7 +503,7 @@ textarea {
 
 .filter.active {
   color: white;
-  background: var(--teal);
+  background: linear-gradient(120deg, var(--teal), var(--violet));
   border-color: var(--teal);
 }
 
@@ -313,12 +523,62 @@ textarea {
 }
 
 .product-card {
+  position: relative;
   overflow: hidden;
+  transform: translateY(0);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 46px rgba(32, 23, 25, 0.13);
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0 38%, rgba(255, 255, 255, 0.65) 46%, transparent 54% 100%);
+  transform: translateX(-130%);
+  transition: transform 650ms ease;
+  pointer-events: none;
+}
+
+.product-card:hover::after {
+  transform: translateX(130%);
 }
 
 .product-art {
+  position: relative;
   min-height: 210px;
   background: var(--mint);
+  overflow: hidden;
+}
+
+.product-art::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42%;
+  height: 70%;
+  clip-path: polygon(50% 0, 90% 26%, 72% 100%, 28% 100%, 10% 26%);
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  filter: drop-shadow(0 18px 18px rgba(32, 23, 25, 0.2));
+  animation: productGem 4s ease-in-out infinite;
+}
+
+.product-art::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  background:
+    linear-gradient(120deg, transparent 0 44%, rgba(255, 255, 255, 0.62) 48%, transparent 52% 100%),
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.7), transparent 12%);
+  mix-blend-mode: screen;
+  animation: prismSweep 3.8s linear infinite;
 }
 
 .product-art.amethyst {
@@ -363,7 +623,13 @@ textarea {
 .product-info button {
   width: 100%;
   color: white;
-  background: var(--ink);
+  background: linear-gradient(120deg, var(--ink), var(--rose));
+  background-size: 180% auto;
+  transition: transform 180ms ease, background-position 180ms ease;
+}
+
+.product-info button:hover {
+  background-position: right center;
 }
 
 .split {
@@ -378,6 +644,7 @@ textarea {
   display: grid;
   gap: 16px;
   padding: 22px;
+  box-shadow: 0 18px 42px rgba(32, 23, 25, 0.08);
 }
 
 label {
@@ -413,6 +680,12 @@ textarea {
 
 .admin-grid article {
   padding: 22px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.admin-grid article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(32, 23, 25, 0.1);
 }
 
 .admin-grid strong {
@@ -474,5 +747,114 @@ textarea {
   .cart-button {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(8vw, -5vh, 0) scale(1.12);
+  }
+}
+
+@keyframes badgePulse {
+  50% {
+    box-shadow: 0 0 34px rgba(76, 201, 240, 0.58);
+    transform: rotate(3deg) scale(1.04);
+  }
+}
+
+@keyframes prismSweep {
+  from {
+    background-position: -220px 0, 0 0;
+  }
+  to {
+    background-position: 220px 0, 260px 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.72) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4) rotate(45deg);
+  }
+}
+
+@keyframes titleFlash {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes buttonGlow {
+  0%,
+  100% {
+    background-position: 0% center;
+    box-shadow: 0 16px 35px rgba(214, 51, 132, 0.24);
+  }
+  50% {
+    background-position: 100% center;
+    box-shadow: 0 18px 44px rgba(0, 168, 168, 0.28);
+  }
+}
+
+@keyframes spinGlow {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes halo {
+  50% {
+    transform: translate(-50%, -50%) rotateX(68deg) rotateZ(12deg) scale(1.08);
+    opacity: 0.68;
+  }
+}
+
+@keyframes floatCrystal {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -18px;
+  }
+}
+
+@keyframes facetSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes productGem {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+  50% {
+    transform: translate(-50%, -58%) rotate(4deg);
   }
 }

@@ -8,6 +8,11 @@
     <script defer src="script.js"></script>
   </head>
   <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <header class="site-header">
       <a class="brand" href="#shop" aria-label="Cassidys Crystals home">
         <span class="brand-mark">CC</span>
@@ -26,23 +31,42 @@
 
     <main>
       <section class="hero" id="shop">
+        <div class="spark-field" aria-hidden="true">
+          <span style="--x: 8%; --y: 18%; --d: 0s"></span>
+          <span style="--x: 26%; --y: 72%; --d: 1.1s"></span>
+          <span style="--x: 52%; --y: 16%; --d: 0.4s"></span>
+          <span style="--x: 75%; --y: 82%; --d: 1.7s"></span>
+          <span style="--x: 90%; --y: 28%; --d: 0.8s"></span>
+          <span style="--x: 38%; --y: 42%; --d: 2.2s"></span>
+        </div>
         <div class="hero-copy">
-          <p class="eyebrow">Rare gems, healing crystals, custom pieces</p>
+          <p class="eyebrow shimmer-text">Rare gems, healing crystals, custom pieces</p>
           <h1>Cassidys Crystals</h1>
           <p>
-            A simple, friendly crystal selling experience for customers, with
-            quick admin tools for adding inventory and managing requests.
+            A glowing crystal shop for rare stones, handpicked gems, and
+            custom jewelry requests that feel magical from the first click.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#products">Browse crystals</a>
             <a class="button secondary" href="#custom">Request jewelry</a>
           </div>
+          <div class="mini-gems" aria-label="Featured crystal types">
+            <span>Amethyst</span>
+            <span>Moonstone</span>
+            <span>Citrine</span>
+            <span>Quartz</span>
+          </div>
         </div>
         <div class="hero-panel" aria-label="Featured collection">
+          <div class="halo-ring"></div>
           <div class="gem-orbit">
             <span class="gem gem-amethyst"></span>
             <span class="gem gem-quartz"></span>
             <span class="gem gem-citrine"></span>
+            <span class="gem gem-emerald"></span>
+            <span class="facet facet-one"></span>
+            <span class="facet facet-two"></span>
+            <span class="facet facet-three"></span>
           </div>
           <p>New drops: amethyst towers, smoky quartz, moonstone rings</p>
         </div>
