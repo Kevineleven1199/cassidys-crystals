@@ -3,8 +3,10 @@ const addButtons = document.querySelectorAll(".product-info button");
 const filters = document.querySelectorAll(".filter");
 const productCards = document.querySelectorAll(".product-card");
 const heroPanel = document.querySelector(".hero-panel");
+const crystalCursor = document.querySelector(".crystal-cursor");
 
 let cartItems = 0;
+let lastSpark = 0;
 
 addButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -35,6 +37,28 @@ if (heroPanel) {
 
   heroPanel.addEventListener("pointerleave", () => {
     heroPanel.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
+  });
+}
+
+if (crystalCursor && window.matchMedia("(pointer: fine)").matches) {
+  window.addEventListener("pointermove", (event) => {
+    crystalCursor.style.transform = `translate3d(${event.clientX - 7}px, ${event.clientY - 8}px, 0) rotate(-16deg)`;
+
+    const now = Date.now();
+    if (now - lastSpark > 55) {
+      lastSpark = now;
+      const spark = document.createElement("span");
+      spark.className = "cursor-spark";
+      spark.style.left = `${event.clientX - 10 + Math.random() * 18}px`;
+      spark.style.top = `${event.clientY + 8 + Math.random() * 18}px`;
+      document.body.appendChild(spark);
+      window.setTimeout(() => spark.remove(), 700);
+    }
+  });
+
+  document.querySelectorAll("a, button, input, select, textarea").forEach((item) => {
+    item.addEventListener("pointerenter", () => crystalCursor.classList.add("is-hovering"));
+    item.addEventListener("pointerleave", () => crystalCursor.classList.remove("is-hovering"));
   });
 }
 
