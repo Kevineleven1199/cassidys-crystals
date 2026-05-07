@@ -2,21 +2,26 @@ const cartCount = document.querySelector("#cart-count");
 const addButtons = document.querySelectorAll(".product-info button");
 const filters = document.querySelectorAll(".filter");
 const productCards = document.querySelectorAll(".product-card");
-const heroPanel = document.querySelector(".hero-panel");
 const crystalCursor = document.querySelector(".crystal-cursor");
 const aiResponse = document.querySelector("#ai-response");
 const oracleButtons = document.querySelectorAll("[data-match]");
 const revealItems = document.querySelectorAll("[data-reveal]");
+const tiltItems = document.querySelectorAll("[data-tilt]");
+const hero = document.querySelector(".hero");
 
 let cartItems = 0;
 let lastSpark = 0;
 
 const crystalMatches = {
-  calm: "Today’s match: amethyst tower for calm energy, deep color, and nightstand glow.",
-  love: "Today’s match: rose quartz palm stone for soft color, warm gifting, and heart-led custom sets.",
-  focus: "Today’s match: clear quartz pendant for clean light, daily wear, and intention stacking.",
-  protect: "Today’s match: smoky quartz collector point for grounding, depth, and rare display drama.",
+  calm: "Today's match: amethyst tower for calm energy, deep color, and nightstand glow.",
+  love: "Today's match: rose quartz palm stone for soft color, warm gifting, and heart-led custom sets.",
+  focus: "Today's match: clear quartz pendant for clean light, daily wear, and intention stacking.",
+  protect: "Today's match: smoky quartz collector point for grounding, depth, and rare display drama.",
 };
+
+window.addEventListener("load", () => {
+  document.body.classList.add("is-ready");
+});
 
 addButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -36,6 +41,8 @@ oracleButtons.forEach((button) => {
     oracleButtons.forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
     aiResponse.textContent = crystalMatches[button.dataset.match];
+    document.body.dataset.mood = button.dataset.match;
+    window.dispatchEvent(new CustomEvent("crystal:mood", { detail: button.dataset.match }));
   });
 });
 
@@ -58,19 +65,32 @@ if (revealItems.length > 0) {
   });
 }
 
-if (heroPanel) {
-  heroPanel.addEventListener("pointermove", (event) => {
-    const bounds = heroPanel.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 10;
-    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * -10;
-
-    heroPanel.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg)`;
-  });
-
-  heroPanel.addEventListener("pointerleave", () => {
-    heroPanel.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
+if (hero) {
+  hero.addEventListener("pointermove", (event) => {
+    const bounds = hero.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    hero.style.setProperty("--spot-x", `${x}%`);
+    hero.style.setProperty("--spot-y", `${y}%`);
   });
 }
+
+tiltItems.forEach((item) => {
+  item.addEventListener("pointermove", (event) => {
+    const bounds = item.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    item.style.setProperty("--tilt-x", `${(y * -8).toFixed(2)}deg`);
+    item.style.setProperty("--tilt-y", `${(x * 10).toFixed(2)}deg`);
+    item.style.setProperty("--glare-x", `${(x + 0.5) * 100}%`);
+    item.style.setProperty("--glare-y", `${(y + 0.5) * 100}%`);
+  });
+
+  item.addEventListener("pointerleave", () => {
+    item.style.setProperty("--tilt-x", "0deg");
+    item.style.setProperty("--tilt-y", "0deg");
+  });
+});
 
 function burstFromButton(button) {
   const bounds = button.getBoundingClientRect();

@@ -38,7 +38,13 @@
       <section class="hero" id="shop">
         <div class="webgl-stage" aria-hidden="true">
           <canvas id="crystal-stage"></canvas>
+          <div class="portal-aura"></div>
           <div class="scene-vignette"></div>
+        </div>
+        <div class="hero-radiance" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <div class="spark-field" aria-hidden="true">
           <span style="--x: 8%; --y: 18%; --d: 0s"></span>
@@ -50,7 +56,10 @@
         </div>
         <div class="hero-copy">
           <p class="eyebrow shimmer-text">Rare gems, healing crystals, custom pieces</p>
-          <h1>Cassidys Crystals</h1>
+          <h1>
+            <span>Cassidys</span>
+            <span>Crystals</span>
+          </h1>
           <p>
             A glowing crystal shop for rare stones, handpicked gems, and
             custom jewelry requests that feel magical from the first click.
@@ -65,12 +74,28 @@
             <span>Citrine</span>
             <span>Quartz</span>
           </div>
+          <div class="drop-stream" aria-label="Featured live crystal drops">
+            <div>
+              <span>Live drop</span>
+              <strong>Amethyst cathedrals</strong>
+              <span>Rose quartz sets</span>
+              <strong>Custom pendants</strong>
+              <span>Collector quartz</span>
+              <strong>Moonstone rings</strong>
+              <span>Live drop</span>
+              <strong>Amethyst cathedrals</strong>
+              <span>Rose quartz sets</span>
+              <strong>Custom pendants</strong>
+              <span>Collector quartz</span>
+              <strong>Moonstone rings</strong>
+            </div>
+          </div>
           <div class="ai-oracle" data-reveal>
             <div class="oracle-header">
               <span class="ai-pulse"></span>
               <strong>AI Crystal Concierge</strong>
             </div>
-            <p id="ai-response">Today’s match: amethyst tower for calm energy, deep color, and nightstand glow.</p>
+            <p id="ai-response">Today's match: amethyst tower for calm energy, deep color, and nightstand glow.</p>
             <div class="oracle-controls" aria-label="Crystal mood matcher">
               <button type="button" data-match="calm">Calm</button>
               <button type="button" data-match="love">Love</button>
@@ -79,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div class="hero-panel" aria-label="Featured collection">
+        <div class="hero-panel" data-tilt aria-label="Featured collection">
           <div class="hero-photo hero-photo-main">
             <img
               src="https://images.unsplash.com/photo-1758275872445-d07581768ab6?auto=format&fit=crop&q=78&w=1400"
@@ -126,17 +151,17 @@
           <h2>Every drop gets light, motion, and a little mystery.</h2>
         </div>
         <div class="experience-grid">
-          <article class="experience-card">
+          <article class="experience-card" data-tilt>
             <span>01</span>
             <strong>Crystal aura match</strong>
             <p>Amethyst, quartz, rose quartz, and moonstone surfaced by mood and style.</p>
           </article>
-          <article class="experience-card">
+          <article class="experience-card" data-tilt>
             <span>02</span>
             <strong>Rare drop radar</strong>
             <p>Fresh finds, low stock, and collector pieces stay visually front and center.</p>
           </article>
-          <article class="experience-card wide">
+          <article class="experience-card wide" data-tilt>
             <span>03</span>
             <strong>Custom jewelry studio</strong>
             <p>Request rings, pendants, bracelets, wire wraps, and one-of-one settings without friction.</p>
@@ -156,7 +181,7 @@
           <button class="filter" type="button" data-filter="jewelry">Jewelry</button>
         </div>
         <div class="product-grid">
-          <article class="product-card" data-category="crystal" data-reveal>
+          <article class="product-card" data-category="crystal" data-reveal data-tilt>
             <div class="product-art amethyst">
               <img
                 src="https://images.unsplash.com/photo-1758275872445-d07581768ab6?auto=format&fit=crop&q=74&w=900"
@@ -170,7 +195,7 @@
               <button type="button" data-name="Amethyst Tower" data-price="$42 Add">$42 Add</button>
             </div>
           </article>
-          <article class="product-card" data-category="gem" data-reveal>
+          <article class="product-card" data-category="gem" data-reveal data-tilt>
             <div class="product-art moonstone">
               <img
                 src="https://images.unsplash.com/photo-1760651913938-68663af9e049?auto=format&fit=crop&q=74&w=900"
@@ -184,7 +209,7 @@
               <button type="button" data-name="Rainbow Moonstone" data-price="$68 Add">$68 Add</button>
             </div>
           </article>
-          <article class="product-card" data-category="jewelry" data-reveal>
+          <article class="product-card" data-category="jewelry" data-reveal data-tilt>
             <div class="product-art necklace">
               <img
                 src="https://images.unsplash.com/photo-1727430473786-e88adb86e463?auto=format&fit=crop&q=74&w=900"
@@ -198,7 +223,7 @@
               <button type="button" data-name="Quartz Pendant" data-price="$55 Add">$55 Add</button>
             </div>
           </article>
-          <article class="product-card" data-category="crystal" data-reveal>
+          <article class="product-card" data-category="crystal" data-reveal data-tilt>
             <div class="product-art citrine">
               <img
                 src="https://images.unsplash.com/photo-1753734051188-b58b9ba4cdc1?auto=format&fit=crop&q=74&w=900"

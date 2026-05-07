@@ -1655,3 +1655,387 @@ textarea::placeholder {
     transform: translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y))) scale(0.2) rotate(160deg);
   }
 }
+
+/* Cinematic animation pass */
+.hero {
+  --spot-x: 68%;
+  --spot-y: 42%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(circle at var(--spot-x) var(--spot-y), rgba(255, 255, 255, 0.18), transparent 18%),
+    radial-gradient(circle at calc(var(--spot-x) - 18%) calc(var(--spot-y) + 12%), rgba(255, 127, 194, 0.18), transparent 22%),
+    linear-gradient(120deg, transparent, rgba(130, 247, 255, 0.08), transparent);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: livingSpotlight 8s ease-in-out infinite;
+}
+
+.portal-aura {
+  position: absolute;
+  left: 58%;
+  top: 50%;
+  width: min(58vw, 850px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background:
+    conic-gradient(from 90deg, transparent, rgba(130, 247, 255, 0.2), transparent, rgba(255, 127, 194, 0.22), transparent),
+    radial-gradient(circle, transparent 44%, rgba(255, 255, 255, 0.08) 45%, transparent 54%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  animation: portalBreath 7s ease-in-out infinite, portalSpin 18s linear infinite;
+}
+
+.hero-radiance {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-radiance span {
+  position: absolute;
+  left: -20%;
+  width: 140%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(130, 247, 255, 0.42), rgba(255, 255, 255, 0.75), transparent);
+  filter: blur(0.5px) drop-shadow(0 0 16px rgba(130, 247, 255, 0.52));
+  transform: rotate(-17deg);
+  animation: lightSweep 5.6s ease-in-out infinite;
+}
+
+.hero-radiance span:nth-child(1) {
+  top: 24%;
+}
+
+.hero-radiance span:nth-child(2) {
+  top: 52%;
+  animation-delay: -1.8s;
+}
+
+.hero-radiance span:nth-child(3) {
+  top: 78%;
+  animation-delay: -3.2s;
+}
+
+.hero-copy {
+  transform: translateY(18px);
+  opacity: 0;
+}
+
+.is-ready .hero-copy {
+  transform: translateY(0);
+  opacity: 1;
+  transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero h1 span {
+  display: block;
+  animation: titleDepth 5.8s ease-in-out infinite;
+}
+
+.hero h1 span:nth-child(2) {
+  animation-delay: -0.75s;
+}
+
+.drop-stream {
+  max-width: 560px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.drop-stream div {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 18px;
+  padding: 11px 16px;
+  animation: liveDrop 18s linear infinite;
+}
+
+.drop-stream span,
+.drop-stream strong {
+  white-space: nowrap;
+}
+
+.drop-stream span {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.drop-stream strong {
+  color: #fff2a8;
+}
+
+[data-tilt] {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-x: 50%;
+  --glare-y: 50%;
+  transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+  will-change: transform;
+}
+
+.experience-card[data-tilt],
+.product-card[data-tilt] {
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card[data-tilt]::before,
+.product-card[data-tilt]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 255, 255, 0.24), transparent 24%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.experience-card[data-tilt]:hover::before,
+.product-card[data-tilt]:hover::before {
+  opacity: 1;
+}
+
+.hero-panel[data-tilt] {
+  transform: perspective(1200px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+}
+
+.hero-panel[data-tilt]:hover {
+  box-shadow: 0 42px 110px rgba(0, 0, 0, 0.48), 0 0 52px rgba(130, 247, 255, 0.16);
+}
+
+.experience-card[data-tilt]:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-10px);
+}
+
+.product-card[data-tilt]:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-10px) scale(1.012);
+}
+
+.button,
+.filter,
+.oracle-controls button,
+.product-info button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button::after,
+.filter::after,
+.oracle-controls button::after,
+.product-info button::after {
+  content: "";
+  position: absolute;
+  inset: -80%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.42), transparent, rgba(130, 247, 255, 0.24), transparent);
+  transform: translateX(-65%) rotate(0deg);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.button:hover::after,
+.filter:hover::after,
+.oracle-controls button:hover::after,
+.product-info button:hover::after {
+  opacity: 1;
+  animation: buttonComet 1.2s linear infinite;
+}
+
+body[data-mood="love"] .hero {
+  --spot-x: 42%;
+  --spot-y: 38%;
+}
+
+body[data-mood="focus"] .hero {
+  --spot-x: 72%;
+  --spot-y: 34%;
+}
+
+body[data-mood="protect"] .hero {
+  --spot-x: 64%;
+  --spot-y: 62%;
+}
+
+body[data-mood="love"] .portal-aura {
+  filter: hue-rotate(46deg) saturate(1.35);
+}
+
+body[data-mood="focus"] .portal-aura {
+  filter: hue-rotate(122deg) saturate(1.18);
+}
+
+body[data-mood="protect"] .portal-aura {
+  filter: hue-rotate(205deg) saturate(1.2);
+}
+
+@media (max-width: 700px) {
+  .portal-aura {
+    left: 62%;
+    top: 58%;
+    width: 760px;
+  }
+
+  .drop-stream {
+    max-width: 100%;
+  }
+
+  .hero-radiance span {
+    width: 190%;
+  }
+}
+
+@keyframes livingSpotlight {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes portalBreath {
+  0%,
+  100% {
+    opacity: 0.54;
+    scale: 0.96;
+  }
+  50% {
+    opacity: 0.92;
+    scale: 1.06;
+  }
+}
+
+@keyframes portalSpin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    translate: -18% 0;
+    opacity: 0;
+  }
+  22%,
+  58% {
+    opacity: 1;
+  }
+  100% {
+    translate: 18% 0;
+    opacity: 0;
+  }
+}
+
+@keyframes titleDepth {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(130, 247, 255, 0);
+    transform: translateZ(0);
+  }
+  50% {
+    text-shadow: 0 0 38px rgba(255, 127, 194, 0.22), 0 0 70px rgba(130, 247, 255, 0.16);
+    transform: translateZ(0) translateX(4px);
+  }
+}
+
+@keyframes liveDrop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-44%);
+  }
+}
+
+@keyframes buttonComet {
+  from {
+    transform: translateX(-65%) rotate(0deg);
+  }
+  to {
+    transform: translateX(65%) rotate(1turn);
+  }
+}
+
+/* Readability polish after the cinematic pass */
+.hero h1 {
+  background: none;
+  color: white;
+}
+
+.hero h1 span {
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(100deg, #ffffff 4%, #ff7fc2 34%, #82f7ff 58%, #ffe29a 78%, #ffffff 96%);
+  background-size: 260% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ai-oracle,
+.drop-stream,
+.hero-copy {
+  min-width: 0;
+}
+
+.ai-oracle p,
+.hero-copy > p {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding-inline: 20px;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.25rem, 15vw, 5.5rem);
+  }
+
+  .hero .eyebrow {
+    max-width: 100%;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .mini-gems span {
+    flex: 1 1 132px;
+    text-align: center;
+  }
+
+  .oracle-controls button {
+    flex: 1 1 112px;
+  }
+
+  .drop-stream div {
+    animation-duration: 15s;
+  }
+}
