@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cassidys Crystals</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#shop" aria-label="Cassidys Crystals home">
+        <span class="brand-mark">CC</span>
+        <span>Cassidys Crystals</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#custom">Custom jewelry</a>
+        <a href="#admin">Admin</a>
+      </nav>
+      <button class="cart-button" type="button" aria-label="Open cart">
+        <span>Cart</span>
+        <strong id="cart-count">0</strong>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="shop">
+        <div class="hero-copy">
+          <p class="eyebrow">Rare gems, healing crystals, custom pieces</p>
+          <h1>Cassidys Crystals</h1>
+          <p>
+            A simple, friendly crystal selling experience for customers, with
+            quick admin tools for adding inventory and managing requests.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#products">Browse crystals</a>
+            <a class="button secondary" href="#custom">Request jewelry</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Featured collection">
+          <div class="gem-orbit">
+            <span class="gem gem-amethyst"></span>
+            <span class="gem gem-quartz"></span>
+            <span class="gem gem-citrine"></span>
+          </div>
+          <p>New drops: amethyst towers, smoky quartz, moonstone rings</p>
+        </div>
+      </section>
+
+      <section class="section inventory-bar" aria-label="Store highlights">
+        <div>
+          <strong>62</strong>
+          <span>active listings</span>
+        </div>
+        <div>
+          <strong>14</strong>
+          <span>rare gem finds</span>
+        </div>
+        <div>
+          <strong>9</strong>
+          <span>custom requests open</span>
+        </div>
+      </section>
+
+      <section class="section" id="products">
+        <div class="section-heading">
+          <p class="eyebrow">Customer storefront</p>
+          <h2>Shop popular crystals and gems</h2>
+        </div>
+        <div class="toolbar" aria-label="Product filters">
+          <button class="filter active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="crystal">Crystals</button>
+          <button class="filter" type="button" data-filter="gem">Rare gems</button>
+          <button class="filter" type="button" data-filter="jewelry">Jewelry</button>
+        </div>
+        <div class="product-grid">
+          <article class="product-card" data-category="crystal">
+            <div class="product-art amethyst"></div>
+            <div class="product-info">
+              <span>Crystal</span>
+              <h3>Amethyst Tower</h3>
+              <p>Deep purple point with polished base.</p>
+              <button type="button" data-name="Amethyst Tower">$42 Add</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="gem">
+            <div class="product-art moonstone"></div>
+            <div class="product-info">
+              <span>Rare gem</span>
+              <h3>Rainbow Moonstone</h3>
+              <p>Flashy cabochon for collectors or settings.</p>
+              <button type="button" data-name="Rainbow Moonstone">$68 Add</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="jewelry">
+            <div class="product-art necklace"></div>
+            <div class="product-info">
+              <span>Jewelry</span>
+              <h3>Quartz Pendant</h3>
+              <p>Clear quartz wrapped in sterling silver.</p>
+              <button type="button" data-name="Quartz Pendant">$55 Add</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="crystal">
+            <div class="product-art citrine"></div>
+            <div class="product-info">
+              <span>Crystal</span>
+              <h3>Citrine Cluster</h3>
+              <p>Warm golden cluster with natural sparkle.</p>
+              <button type="button" data-name="Citrine Cluster">$36 Add</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="custom">
+        <div>
+          <p class="eyebrow">Custom jewelry requests</p>
+          <h2>Ask for a one-of-one crystal piece</h2>
+          <p>
+            Customers can request rings, pendants, bracelets, wire wraps, and
+            special rare gem settings. The form keeps the request simple and
+            easy to review.
+          </p>
+        </div>
+        <form class="request-form">
+          <label>
+            Name
+            <input type="text" placeholder="Customer name" />
+          </label>
+          <label>
+            Crystal or gem
+            <input type="text" placeholder="Moonstone, amethyst, opal..." />
+          </label>
+          <label>
+            Jewelry type
+            <select>
+              <option>Ring</option>
+              <option>Pendant</option>
+              <option>Bracelet</option>
+              <option>Wire wrap</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea placeholder="Size, metal color, style, budget"></textarea>
+          </label>
+          <button class="button primary" type="button">Send request</button>
+        </form>
+      </section>
+
+      <section class="section admin-section" id="admin">
+        <div class="section-heading">
+          <p class="eyebrow">Admin made easy</p>
+          <h2>Manage the crystal shop fast</h2>
+        </div>
+        <div class="admin-grid">
+          <article>
+            <span>Inventory</span>
+            <strong>Add crystal listing</strong>
+            <p>Photo, name, price, stock, rarity, and category in one place.</p>
+          </article>
+          <article>
+            <span>Orders</span>
+            <strong>Review new orders</strong>
+            <p>See customer details, paid status, and packing notes quickly.</p>
+          </article>
+          <article>
+            <span>Custom</span>
+            <strong>Track jewelry requests</strong>
+            <p>Move requests from new to quoted, making, shipped, or done.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Cassidys Crystals</p>
+      <p>Crystals, rare gems, and custom jewelry requests.</p>
+    </footer>
+  </body>
+</html>
