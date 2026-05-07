@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cassidys Crystals</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
@@ -61,17 +62,28 @@
           </div>
         </div>
         <div class="hero-panel" aria-label="Featured collection">
-          <div class="halo-ring"></div>
-          <div class="gem-orbit">
-            <span class="gem gem-amethyst"></span>
-            <span class="gem gem-quartz"></span>
-            <span class="gem gem-citrine"></span>
-            <span class="gem gem-emerald"></span>
-            <span class="facet facet-one"></span>
-            <span class="facet facet-two"></span>
-            <span class="facet facet-three"></span>
+          <div class="hero-photo hero-photo-main">
+            <img
+              src="https://images.unsplash.com/photo-1758275872445-d07581768ab6?auto=format&fit=crop&q=78&w=1400"
+              alt="Purple amethyst crystal cluster on a stand"
+            />
           </div>
-          <p>New drops: amethyst towers, smoky quartz, moonstone rings</p>
+          <div class="hero-photo hero-photo-side">
+            <img
+              src="https://images.unsplash.com/photo-1760651913938-68663af9e049?auto=format&fit=crop&q=78&w=900"
+              alt="Quartz crystals and metallic mineral specimen"
+            />
+          </div>
+          <div class="hero-photo hero-photo-jewel">
+            <img
+              src="https://images.unsplash.com/photo-1727430473786-e88adb86e463?auto=format&fit=crop&q=78&w=900"
+              alt="Crystal pendant held by hands"
+            />
+          </div>
+          <div class="halo-ring"></div>
+          <span class="photo-spark spark-one"></span>
+          <span class="photo-spark spark-two"></span>
+          <p>Real crystal drops: amethyst towers, raw quartz, custom pendants</p>
         </div>
       </section>
 
@@ -103,39 +115,59 @@
         </div>
         <div class="product-grid">
           <article class="product-card" data-category="crystal">
-            <div class="product-art amethyst"></div>
+            <div class="product-art amethyst">
+              <img
+                src="https://images.unsplash.com/photo-1758275872445-d07581768ab6?auto=format&fit=crop&q=74&w=900"
+                alt="Amethyst crystal tower"
+              />
+            </div>
             <div class="product-info">
               <span>Crystal</span>
               <h3>Amethyst Tower</h3>
               <p>Deep purple point with polished base.</p>
-              <button type="button" data-name="Amethyst Tower">$42 Add</button>
+              <button type="button" data-name="Amethyst Tower" data-price="$42 Add">$42 Add</button>
             </div>
           </article>
           <article class="product-card" data-category="gem">
-            <div class="product-art moonstone"></div>
+            <div class="product-art moonstone">
+              <img
+                src="https://images.unsplash.com/photo-1760651913938-68663af9e049?auto=format&fit=crop&q=74&w=900"
+                alt="Rare quartz mineral specimen"
+              />
+            </div>
             <div class="product-info">
               <span>Rare gem</span>
               <h3>Rainbow Moonstone</h3>
               <p>Flashy cabochon for collectors or settings.</p>
-              <button type="button" data-name="Rainbow Moonstone">$68 Add</button>
+              <button type="button" data-name="Rainbow Moonstone" data-price="$68 Add">$68 Add</button>
             </div>
           </article>
           <article class="product-card" data-category="jewelry">
-            <div class="product-art necklace"></div>
+            <div class="product-art necklace">
+              <img
+                src="https://images.unsplash.com/photo-1727430473786-e88adb86e463?auto=format&fit=crop&q=74&w=900"
+                alt="Crystal pendant necklace"
+              />
+            </div>
             <div class="product-info">
               <span>Jewelry</span>
               <h3>Quartz Pendant</h3>
               <p>Clear quartz wrapped in sterling silver.</p>
-              <button type="button" data-name="Quartz Pendant">$55 Add</button>
+              <button type="button" data-name="Quartz Pendant" data-price="$55 Add">$55 Add</button>
             </div>
           </article>
           <article class="product-card" data-category="crystal">
-            <div class="product-art citrine"></div>
+            <div class="product-art citrine">
+              <img
+                src="https://images.unsplash.com/photo-1753734051188-b58b9ba4cdc1?auto=format&fit=crop&q=74&w=900"
+                alt="Polished rose quartz gemstone"
+              />
+            </div>
             <div class="product-info">
               <span>Crystal</span>
-              <h3>Citrine Cluster</h3>
-              <p>Warm golden cluster with natural sparkle.</p>
-              <button type="button" data-name="Citrine Cluster">$36 Add</button>
+              <h3>Rose Quartz Palm Stone</h3>
+              <p>Soft pink polished stone with natural glow.</p>
+              <button type="button" data-name="Rose Quartz Palm Stone" data-price="$36 Add">$36 Add</button>
             </div>
           </article>
         </div>

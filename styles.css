@@ -944,3 +944,206 @@ textarea {
     transform: translate(-50%, -50%) scale(0.18) rotate(90deg);
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, #000, transparent 74%);
+  pointer-events: none;
+}
+
+.hero {
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.88), rgba(243, 255, 251, 0.62)),
+    radial-gradient(circle at 78% 36%, rgba(214, 51, 132, 0.18), transparent 34%),
+    url("https://images.unsplash.com/photo-1767131544809-fd070e5c49a4?auto=format&fit=crop&q=55&w=2200");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen, normal, soft-light;
+}
+
+.hero h1 {
+  filter: drop-shadow(0 18px 38px rgba(214, 51, 132, 0.16));
+}
+
+.hero-panel {
+  display: block;
+  min-height: 520px;
+  padding: 0;
+  background: #150e14;
+  transform-style: preserve-3d;
+  transition: transform 180ms ease;
+}
+
+.hero-panel::before,
+.hero-panel::after {
+  inset: -58%;
+  z-index: 2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-panel::before {
+  animation-duration: 7.5s;
+}
+
+.hero-panel p {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  z-index: 4;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.56);
+}
+
+.hero-photo {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+}
+
+.hero-photo img,
+.product-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 36%, rgba(255, 255, 255, 0.62) 43%, transparent 51% 100%),
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.52), transparent 20%);
+  mix-blend-mode: screen;
+  transform: translateX(-120%);
+  animation: photoFlash 4.2s ease-in-out infinite;
+}
+
+.hero-photo-main {
+  inset: 24px 24% 42px 24px;
+  z-index: 1;
+  animation: photoFloat 5.4s ease-in-out infinite;
+}
+
+.hero-photo-side {
+  right: 26px;
+  top: 58px;
+  z-index: 3;
+  width: 36%;
+  height: 46%;
+  animation: photoFloat 4.8s ease-in-out infinite reverse;
+}
+
+.hero-photo-jewel {
+  right: 9%;
+  bottom: 52px;
+  z-index: 3;
+  width: 31%;
+  height: 36%;
+  animation: photoFloat 5.9s ease-in-out infinite;
+}
+
+.photo-spark {
+  position: absolute;
+  z-index: 5;
+  width: 18px;
+  height: 18px;
+  background: white;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 1));
+  animation: twinkle 1.6s ease-in-out infinite;
+}
+
+.spark-one {
+  left: 12%;
+  top: 18%;
+}
+
+.spark-two {
+  right: 16%;
+  bottom: 28%;
+  animation-delay: -0.8s;
+}
+
+.halo-ring {
+  z-index: 4;
+  box-shadow: 0 0 38px rgba(76, 201, 240, 0.42), inset 0 0 40px rgba(214, 51, 132, 0.22);
+  pointer-events: none;
+  animation-duration: 3.4s;
+}
+
+.product-art {
+  height: 255px;
+  min-height: 255px;
+}
+
+.product-art::before {
+  content: none;
+}
+
+.product-art img {
+  transition: transform 650ms ease, filter 650ms ease;
+}
+
+.product-card:hover .product-art img {
+  transform: scale(1.08);
+  filter: saturate(1.14) contrast(1.04);
+}
+
+@media (max-width: 900px) {
+  .hero-panel {
+    min-height: 520px;
+  }
+
+  .hero-photo-main {
+    inset: 18px 18px 164px;
+  }
+
+  .hero-photo-side {
+    left: 18px;
+    right: auto;
+    top: auto;
+    bottom: 46px;
+    width: 44%;
+    height: 30%;
+  }
+
+  .hero-photo-jewel {
+    right: 18px;
+    bottom: 46px;
+    width: 44%;
+    height: 30%;
+  }
+}
+
+@keyframes photoFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 26px) rotate(-0.6deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 42px) rotate(0.8deg);
+  }
+}
+
+@keyframes photoFlash {
+  0%,
+  38% {
+    transform: translateX(-130%);
+  }
+  72%,
+  100% {
+    transform: translateX(130%);
+  }
+}

@@ -15,13 +15,7 @@ addButtons.forEach((button) => {
     button.textContent = "Added";
 
     window.setTimeout(() => {
-      button.textContent = button.dataset.name.includes("Moonstone")
-        ? "$68 Add"
-        : button.dataset.name.includes("Quartz")
-          ? "$55 Add"
-          : button.dataset.name.includes("Citrine")
-            ? "$36 Add"
-            : "$42 Add";
+      button.textContent = button.dataset.price;
     }, 900);
   });
 });
